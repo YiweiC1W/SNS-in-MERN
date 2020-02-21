@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://cyw921113:cyw921113@sns-in-mern-upsxd.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://cyw921113:cyw921113@sns-in-mern-upsxd.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecret"
 }
