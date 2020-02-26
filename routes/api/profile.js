@@ -1,4 +1,6 @@
 const express = require("express");
+const request = require("request");
+const config = require("config");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
@@ -268,7 +270,7 @@ router.put(
       const profile = await Profile.findOne({ user: req.user.id });
       profile.education.unshift(newEdu);
       await profile.save();
-      res.json(profile)
+      res.json(profile);
     } catch (e) {
       console.error(e.message);
       res.status(500).send("Server error");
@@ -281,7 +283,8 @@ router.put(
 // @access Private
 router.delete("/education/:edu_id", auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id });udemyu
+    const profile = await Profile.findOne({ user: req.user.id });
+    udemyu;
     for (let i = 0; i < profile.education.length; i++) {
       if (profile.education[i].id === req.params.edu_id) {
         profile.education.splice(i--, 1);
@@ -289,6 +292,34 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
     }
     await profile.save();
     res.json(profile);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server error");
+  }
+});
+
+// @route  DELETE api/profile/github/:username
+// @desc   Get user repos from github
+// @access Public
+router.get("/github/:username", (req, res) => {
+  try {
+    const uri = `http://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get('githubSecret')}`;
+    const options = {
+      method: "GET",
+      headers: { "user-agent": "node.js" }
+    };
+
+    request(uri, options, (error, response, body) => {
+      if (error) {
+        console.error(error);
+      }
+      console.log(body)
+      if (response.statusCode !== 200) {
+        return res.status(404).json({ msg: "No Github profile found" });
+      }
+
+      return res.json(JSON.parse(body));
+    });
   } catch (e) {
     console.error(e.message);
     res.status(500).send("Server error");
