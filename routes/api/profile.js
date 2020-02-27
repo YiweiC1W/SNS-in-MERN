@@ -284,7 +284,6 @@ router.put(
 router.delete("/education/:edu_id", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
-    udemyu;
     for (let i = 0; i < profile.education.length; i++) {
       if (profile.education[i].id === req.params.edu_id) {
         profile.education.splice(i--, 1);
@@ -303,7 +302,11 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 // @access Public
 router.get("/github/:username", (req, res) => {
   try {
-    const uri = `http://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get('githubSecret')}`;
+    const uri = `https://api.github.com/users/${
+      req.params.username
+    }/repos?per_page=5&sort=created:asc&client_id=${config.get(
+      "githubClientId"
+    )}&client_secret=${config.get("githubSecret")}`;
     const options = {
       method: "GET",
       headers: { "user-agent": "node.js" }
@@ -313,7 +316,6 @@ router.get("/github/:username", (req, res) => {
       if (error) {
         console.error(error);
       }
-      console.log(body)
       if (response.statusCode !== 200) {
         return res.status(404).json({ msg: "No Github profile found" });
       }
