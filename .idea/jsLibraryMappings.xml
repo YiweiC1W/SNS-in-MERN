@@ -4,6 +4,5 @@
     <file url="file://$PROJECT_DIR$/routes/api/profile.js" libraries="{@types/mongoose}" />
     <file url="PROJECT" libraries="{@types/bcryptjs, @types/config, SNS-in-MERRN/node_modules}" />
     <includedPredefinedLibrary name="Node.js Core" />
-    <excludedPredefinedLibrary name="HTML" />
   </component>
 </project>
