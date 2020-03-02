@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from "react";
 import {connect} from 'react-redux'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {setAlert} from "../../actions/alert.action";
+import {register} from "../../actions/auth.action";
 
-const Register = ({setAlert}) => {
+const Register = ({setAlert,register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,9 +22,13 @@ const Register = ({setAlert}) => {
     if (password !== password2) {
       setAlert("password not match", 'danger');
     } else {
-      console.log(formData);
+      register({name, email, password});
     }
   };
+
+  if(isAuthenticated){
+    return <Redirect to="/dashboard"/>
+  }
 
   return (
     <Fragment>
@@ -88,7 +93,12 @@ const Register = ({setAlert}) => {
 };
 
 const mapDispatchToProps = {
-  setAlert:setAlert
+  setAlert:setAlert,
+  register:register
 };
 
-export default connect(null, mapDispatchToProps)(Register);
+const mapStateToProps = state =>({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

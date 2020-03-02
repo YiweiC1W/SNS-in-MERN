@@ -7,5 +7,6 @@
     <orderEntry type="library" name="@types/config" level="application" />
     <orderEntry type="library" name="@types/bcryptjs" level="application" />
     <orderEntry type="library" name="@types/mongoose" level="application" />
+    <orderEntry type="library" name="@types/react-router-dom" level="application" />
   </component>
 </module>
