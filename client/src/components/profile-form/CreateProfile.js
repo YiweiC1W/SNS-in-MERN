@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {createProfile, getCurrentProfile} from "../../actions/profile.action";
 
