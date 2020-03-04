@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import {setAlert} from "../../actions/alert.action";
-import {register} from "../../actions/auth.action";
+import { setAlert } from "../../actions/alert.action";
+import { register } from "../../actions/auth.action";
 
-const Register = ({setAlert,register, isAuthenticated}) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,14 +20,14 @@ const Register = ({setAlert,register, isAuthenticated}) => {
   const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert("password not match", 'danger');
+      setAlert("password not match", "danger");
     } else {
-      register({name, email, password});
+      register({ name, email, password });
     }
   };
 
-  if(isAuthenticated){
-    return <Redirect to="/dashboard"/>
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -93,11 +93,11 @@ const Register = ({setAlert,register, isAuthenticated}) => {
 };
 
 const mapDispatchToProps = {
-  setAlert:setAlert,
-  register:register
+  setAlert: setAlert,
+  register: register
 };
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 

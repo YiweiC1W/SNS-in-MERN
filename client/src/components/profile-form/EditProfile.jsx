@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {createProfile, getCurrentProfile} from "../../actions/profile.action";
+import { createProfile, getCurrentProfile } from "../../actions/profile.action";
 
 const initialState = {
   company: "",
@@ -240,7 +240,7 @@ const EditProfile = ({
 };
 
 const mapStateToProps = state => ({
-    profile:state.profile
+  profile: state.profile
 });
 
 const mapDispatchToProps = {
@@ -248,4 +248,7 @@ const mapDispatchToProps = {
   getCurrentProfile: getCurrentProfile
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditProfile));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EditProfile));

@@ -4,7 +4,9 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL, LOGOUT, ACCOUNT_DELETED
+  LOGIN_FAIL,
+  LOGOUT,
+  ACCOUNT_DELETED
 } from "../actions/types";
 
 const initialState = {
@@ -48,4 +50,4 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
-};
+}

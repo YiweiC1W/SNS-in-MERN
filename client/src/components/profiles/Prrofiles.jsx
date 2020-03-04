@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getProfiles:getProfiles
+  getProfiles: getProfiles
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profiles);

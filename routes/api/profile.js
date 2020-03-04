@@ -7,7 +7,7 @@ const { check, validationResult } = require("express-validator");
 
 const Profile = require("../../models/Profile.model");
 const User = require("../../models/User.model");
-const Post = require("../../models/Post.model")
+const Post = require("../../models/Post.model");
 
 // @route  GET api/profile/me
 // @desc   Get current user profile
@@ -76,9 +76,9 @@ router.post(
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
       profileFields.skills = skills
-          .toString()
-          .split(',')
-          .map(skill => skill.trim());
+        .toString()
+        .split(",")
+        .map(skill => skill.trim());
     }
     //Build social object
     profileFields.social = {};
@@ -152,7 +152,7 @@ router.get("/user/:user_id", async (req, res) => {
 router.delete("/", auth, async (req, res) => {
   try {
     //remove user posts
-    await Post.deleteMany({user: req.user.id});
+    await Post.deleteMany({ user: req.user.id });
     await Profile.findOneAndDelete({ user: req.user.id });
     const user = await User.findOneAndDelete({ _id: req.user.id });
     res.json({ msg: `User ${user.name} deleted` });
@@ -307,8 +307,6 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 // @access Public
 router.get("/github/:username", (req, res) => {
   try {
-
-
     const uri = `https://api.github.com/users/${
       req.params.username
     }/repos?per_page=5&sort=created:asc&client_id=${config.get(

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {createProfile, getCurrentProfile} from "../../actions/profile.action";
+import { createProfile, getCurrentProfile } from "../../actions/profile.action";
 
 const CreateProfile = ({ createProfile, history, getCurrentProfile }) => {
   const [formData, setFormData] = useState({
@@ -41,7 +41,7 @@ const CreateProfile = ({ createProfile, history, getCurrentProfile }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history)
+    createProfile(formData, history);
   };
 
   useEffect(() => {
@@ -223,12 +223,15 @@ const CreateProfile = ({ createProfile, history, getCurrentProfile }) => {
 };
 
 const mapStateToProps = state => ({
-  profile:state.profile
+  profile: state.profile
 });
 
 const mapDispatchToProps = {
   createProfile: createProfile,
-  getCurrentProfile:getCurrentProfile
+  getCurrentProfile: getCurrentProfile
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateProfile));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(CreateProfile));

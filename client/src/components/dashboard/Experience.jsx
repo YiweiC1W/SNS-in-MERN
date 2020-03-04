@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Moment from "react-moment";
 import moment from "moment";
 import { connect } from "react-redux";
-import { deleteExperience } from '../../actions/profile.action';
+import { deleteExperience } from "../../actions/profile.action";
 
 const Experience = ({ experience, deleteExperience }) => {
   const experiences = experience.map(exp => (
@@ -46,11 +46,11 @@ const Experience = ({ experience, deleteExperience }) => {
 };
 
 const mapStateToProps = state => ({
-    experience: state.profile.profile.experience
+  experience: state.profile.profile.experience
 });
 
 const mapDispatchToProps = {
-    deleteExperience:deleteExperience
+  deleteExperience: deleteExperience
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Experience);
